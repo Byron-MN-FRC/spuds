@@ -68,27 +68,29 @@ public class drivetrain extends Subsystem {
     }
     public void driveStraight(double speed, double _targetAngle) {
         System.out.println("in drivestraight");
-        PigeonIMU _pidgey = RobotMap.drivetrainPigeonIMU;
-    //	robotDrive.tankDrive(speed, speed);
-        PigeonIMU.GeneralStatus genStatus = new PigeonIMU.GeneralStatus();
-        PigeonIMU.FusionStatus fusionStatus = new PigeonIMU.FusionStatus();
-            double [] xyz_dps = new double [3];
-    /* grab some input data from Pigeon and gamepad*/
-         _pidgey.getGeneralStatus(genStatus);
-        _pidgey.getRawGyro(xyz_dps);
-            double currentAngle = _pidgey.getFusedHeading(fusionStatus);
-            boolean angleIsGood = (_pidgey.getState() == PigeonState.Ready) ? true : false;
-            double currentAngularRate = xyz_dps[2];
-        leftMotor.set(-speed);
-        rightMotor.set(speed);
-        SmartDashboard.putNumber("Pigdegy Yaw", currentAngle);
-      //  * replace with favorite close loop strategy or leverage future Talon <=> Pigeon features. */
-        double turnThrottle = (_targetAngle - currentAngle) * kPgain - (currentAngularRate) * kDgain;
+        RobotMap.drivetrainLeftMotor.set(.3);
+        RobotMap.drivetrainRightMotor.set(.3);
+    //     PigeonIMU _pidgey = RobotMap.drivetrainPigeonIMU;
+    // //	robotDrive.tankDrive(speed, speed);
+    //     PigeonIMU.GeneralStatus genStatus = new PigeonIMU.GeneralStatus();
+    //     PigeonIMU.FusionStatus fusionStatus = new PigeonIMU.FusionStatus();
+    //         double [] xyz_dps = new double [3];
+    // /* grab some input data from Pigeon and gamepad*/
+    //      _pidgey.getGeneralStatus(genStatus);
+    //     _pidgey.getRawGyro(xyz_dps);
+    //         double currentAngle = _pidgey.getFusedHeading(fusionStatus);
+    //         boolean angleIsGood = (_pidgey.getState() == PigeonState.Ready) ? true : false;
+    //         double currentAngularRate = xyz_dps[2];
+    //     leftMotor.set(-speed);
+    //     rightMotor.set(speed);
+    //     SmartDashboard.putNumber("Pigdegy Yaw", currentAngle);
+    //   //  * replace with favorite close loop strategy or leverage future Talon <=> Pigeon features. */
+      //  double turnThrottle = (_targetAngle - currentAngle) * kPgain - (currentAngularRate) * kDgain;
         /* the max correction is the forward throttle times a scalar,
          * This can be done a number of ways but basically only apply small turning correction when we are moving slow
          * and larger correction the faster we move.  Otherwise you may need stiffer pgain at higher velocities. */
-        double maxThrot = MaxCorrection(speed, kMaxCorrectionRatio);
-        turnThrottle = Cap(turnThrottle, maxThrot);
+        // double maxThrot = MaxCorrection(speed, kMaxCorrectionRatio);
+        // turnThrottle = Cap(turnThrottle, maxThrot);
 
         }	/**
         * As a simple trick, lets take the spare talon and use the web-based

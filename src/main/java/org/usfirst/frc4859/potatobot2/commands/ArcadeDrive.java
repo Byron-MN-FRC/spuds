@@ -44,7 +44,7 @@ public class ArcadeDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.drivetrain.arcadedrive(Robot.oi.getJoystick());
+    	//Robot.drivetrain.arcadedrive(Robot.oi.getJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -56,7 +56,7 @@ public class ArcadeDrive extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	Robot.drivetrain.driveStraight(0);
+    	Robot.drivetrain.driveStraight(0,0);
     }
 
     // Called when another command which requires one or more of the same
